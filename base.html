@@ -10,12 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0f172a;
-            --card: #111827;
+            --bg: #faf6ee;
+            --card: #faf6ee;
             --muted: #94a3b8;
             --acc: #22c55e;
-            --acc2: #38bdf8;
-            --text: #e5e7eb;
+            --acc2: #ffd21f;
+            --text: #003265;
         }
 
         * {
@@ -25,7 +25,7 @@
         body {
             margin: 0;
             font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-            background: linear-gradient(180deg, #0b1222, #0f172a);
+            background: #faf6ee;
             color: var(--text)
         }
 
@@ -38,8 +38,8 @@
         header {
             position: sticky;
             top: 0;
-            backdrop-filter: saturate(180%) blur(10px);
-            background: rgba(2, 6, 23, .75);
+            backdrop-filter: saturate(180%) blur(50px);
+            background: #faf6ee(2, 6, 23, .75);
             border-bottom: 1px solid rgba(148, 163, 184, .15);
             z-index: 10
         }
@@ -85,14 +85,14 @@
             padding: 10px 14px;
             border-radius: 999px;
             background: var(--acc2);
-            color: #061018;
+            color: #003265;
             text-decoration: none;
             font-weight: 600
         }
 
         .hero {
             padding: 64px 0 24px;
-            border-bottom: 1px solid rgba(148, 163, 184, .15)
+            border-bottom: 1px solid rgba(45, 75, 118, 0.15)
         }
 
         .hero h1 {
@@ -107,7 +107,7 @@
 
         section {
             padding: 48px 0;
-            border-bottom: 1px solid rgba(148, 163, 184, .12)
+            border-bottom: 1px solid rgba(84, 126, 186, 0.12)
         }
 
         h2 {
@@ -127,10 +127,11 @@
         }
 
         .card {
-            background: linear-gradient(180deg, #0b1222, #0b1325);
+            background: #003366;
             border: 1px solid rgba(148, 163, 184, .15);
             border-radius: 16px;
-            padding: 16px
+            padding: 16px;
+            color: #faf6ee
         }
 
         .muted {
@@ -162,7 +163,7 @@
             padding: 12px;
             border-radius: 12px;
             border: 1px solid rgba(148, 163, 184, .25);
-            background: #0a1020;
+            background: white;
             color: var(--text)
         }
 
@@ -177,7 +178,7 @@
 
         .pill {
             display: inline-block;
-            border: 1px solid rgba(148, 163, 184, .25);
+            border: 1px solid rgba(35, 77, 135, 0.25);
             padding: 6px 10px;
             border-radius: 999px;
             font-size: .85rem;
@@ -252,12 +253,12 @@
                     <article class="card">
                         <h3>Semana de oração</h3>
                         <p class="muted">Agosto · Tema: Esperança</p>
-                        <a class="btn" href="#">Detalhes</a>
+                        <a class="btn" href="#">Mais informações</a>
                     </article>
                     <article class="card">
                         <h3>Mutirão de Natal</h3>
                         <p class="muted">Dezembro · Ação solidária</p>
-                        <a class="btn" href="#">Quero ajudar</a>
+                        <a class="btn" href="#">Mais informações</a>
                     </article>
                 </div>
             </div>
@@ -270,15 +271,19 @@
                 <div class="cards">
                     <article class="card"><strong>Série: Esperança</strong>
                         <p class="muted">Estudo no livro de Salmos</p>
+                        <a class="btn" href="#">Ler</a>
                     </article>
                     <article class="card"><strong>O poder da oração</strong>
                         <p class="muted">Mensagem especial</p>
+                        <a class="btn" href="#">Ler</a>
                     </article>
                     <article class="card"><strong>Seguindo Jesus</strong>
                         <p class="muted">Discipulado na prática</p>
+                        <a class="btn" href="#">Ler</a>
                     </article>
                     <article class="card"><strong>Vivendo pela fé</strong>
                         <p class="muted">Hebreus 11</p>
+                        <a class="btn" href="#">Ler</a>
                     </article>
                 </div>
             </div>
@@ -291,16 +296,18 @@
                 <div class="cards">
                     <article class="card"><strong>Mídia</strong>
                         <p class="muted">Som, projeção e transmissão.</p>
+                        <a class="btn" href="#">Inscreva-se</a>
                     </article>
                     <article class="card"><strong>Recepção</strong>
                         <p class="muted">Acolha membros e visitantes.</p>
+                        <a class="btn" href="#">Inscreva-se</a>
                     </article>
                     <article class="card"><strong>Escola Sabatina</strong>
                         <p class="muted">Facilite estudos e discussões.</p>
+                        <a class="btn" href="#">Inscreva-se</a>
+
                     </article>
                 </div>
-                <p style="margin-top:12px"><a class="btn" href="#contato">Inscreva-se</a></p>
-            </div>
         </section>
 
         <section id="contato">
