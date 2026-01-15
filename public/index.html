@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Igreja Adventista - Sorocaba</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- repara no / na frente -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="brand">
+                    <span>Igreja Adventista do Sétimo Dia - Distrito do Cerrado</span>
+                </div>
+                <div class="menu">
+                    <a href="#sobre">Sobre</a>
+                    <a href="#igrejas">Igrejas</a>
+                    <a href="#eventos">Eventos</a>
+                    <a href="#voluntariado">Voluntariado</a>
+                    <a href="#contato">Contato</a>
+
+                    <!-- Ãrea de autenticaÃ§Ã£o -->
+                    <a href="/admin-login.html" id="login-link">Login</a>
+                    <a href="/admin.html" id="admin-link" style="display:none;">Painel</a>
+                    <a href="#" id="logout-link" style="display:none;">Sair</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Bem-vindo(a) à nossa comunidade!</h1>
+                <h3>Seguimos a Jesus, partilhamos esperança e servimos nossa cidade. Reunimo-nos
+                    semanalmente para culto, estudo, oração e convivência fraterna.</h3>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <div class="container two-col">
+                <div>
+                    <h2>Sobre nós</h2>
+                    <p class="muted">Somos uma comunidade de fé dedicada a seguir os ensinamentos de Jesus Cristo,
+                        tendo a Bí­blia como regra de fé e prática. Buscamos viver em comunhão com Deus, servir ao
+                        próximo
+                        e nos preparar para a eternidade.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="igrejas">
+            <div class="container">
+                <div>
+                    <h2>Venha nos conhecer</h2>
+                    <div class="cards">
+                        <article class="card">
+                            <h3>Igreja Wanel Ville</h3>
+                            <p class="muted">Rua João Tomé Franco, 726 - 18055-087</p>
+                        </article>
+                        <article class="card">
+                            <h3>Igreja Cerrado</h3>
+                            <p class="muted">Rua Caetano Ferraz Martins, 206 - 18055-120</p>
+                        </article>
+                        <article class="card">
+                            <h3>Igreja Jd. Itanguá</h3>
+                            <p class="muted">Rua José Maria Marques, 785 - 18056-090</p>
+                        </article>
+                        <article class="card">
+                            <h3>Igreja Vila Barão</h3>
+                            <p class="muted">Rua Benedito Clemente de Souza, 230 - 18065-506</p>
+                        </article>
+                        <article class="card">
+                            <h3>Igreja Nova Esperança</h3>
+                            <p class="muted">Rua Durvalino Tioflo dos Santos, 133 - 18056-350</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AQUI vem os eventos dinÃ¢micos -->
+        <section id="eventos">
+            <div class="container">
+                <h2>Eventos</h2>
+                <p class="muted">Participe dos nossos eventos distritais.</p>
+                <!-- ESSE container serÃ¡ preenchido via JS -->
+                <div class="cards" id="events-container">
+                    <!-- JS insere os <article class="card"> aqui -->
+                </div>
+            </div>
+        </section>
+
+        <section id="voluntariado">
+            <div class="container">
+                <h2>Voluntariado</h2>
+                <p class="muted">Sirva com seus dons e habilidades.</p>
+
+                <!-- Cards dinÃ¢micos -->
+                <div class="cards" id="volunteers-container"></div>
+
+                <!-- Form escondido (abre sÃ³ quando clicar em Inscreva-se) -->
+                <div id="volunteer-form-wrapper" style="display:none; margin-top:24px;">
+                    <h3>Inscreva-se</h3>
+                    <p class="muted">Preencha o formulário para se voluntariar.</p>
+
+                    <form id="volunteer-form">
+                        <input type="hidden" id="vol-role-id">
+
+                        <label for="vol-role-name">Área escolhida</label>
+                        <input id="vol-role-name" name="area" readonly />
+
+                        <label for="vol-nome">Seu nome</label>
+                        <input id="vol-nome" name="nome" required placeholder="Maria Silva">
+
+                        <label for="vol-telefone">Telefone</label>
+                        <input id="vol-telefone" name="telefone" placeholder="(11) 99999-9999">
+
+                        <label for="vol-email">Seu e-mail</label>
+                        <input id="vol-email" name="email" type="email" required placeholder="voce@exemplo.com">
+
+                        <label for="vol-msg">Mensagem</label>
+                        <textarea id="vol-msg" name="mensagem"
+                            placeholder="Conte um pouco sobre vocÃª, disponibilidade, etc."></textarea>
+
+                        <p class="mt-12">
+                            <button class="btn" type="submit">Enviar inscrição</button>
+                            <button class="btn" type="button" id="vol-cancel" style="margin-left:8px;">Cancelar</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato">
+            <div class="container">
+                <div>
+                    <h2>Tem interesse em estudar a Palavra de Deus?
+                    </h2>
+                    <p class="muted"> Venha conhecer nossos planos de estudos gratuitos! Fale conosco. Envie uma
+                        mensagem.</p>
+                    <form id="contact-form">
+                        <label for="nome">Seu nome</label>
+                        <input id="nome" name="nome" placeholder="Maria Silva" required />
+                        <label for="telefone">Telefone</label>
+                        <input id="telefone" name="telefone" placeholder="(11) 99999-9999" />
+                        <label for="email">Seu e-mail</label>
+                        <input id="email" name="email" type="email" placeholder="mariasilva@gmail.com" required />
+                        <label for="msg">Sua mensagem</label>
+                        <textarea id="msg" name="mensagem"
+                            placeholder="O que você sabe sobre a Bíblia? Por onde podemos começar?"></textarea>
+                        <p class="mt-12"></p>
+                        <p class="muted" id="contact-status" style="margin-top:10px;"></p>
+                        <button class="btn" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+            <footer>
+                <div class="container">© 2025 - Portal Evangelista. Todos os direitos reservados.</div>
+            </footer>
+
+            <!-- JS do site público -->
+            <script src="/script.js"></script>
+</body>
+
+</html>

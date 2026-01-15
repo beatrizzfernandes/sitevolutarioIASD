@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Painel Admin</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Estilo leve só para as abas (aproveita seu styles.css) */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 18px 0;
+        }
+
+        .tab {
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            background: white;
+            color: var(--text);
+            padding: 10px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            opacity: .9;
+        }
+
+        .tab.active {
+            background: var(--acc2);
+            opacity: 1;
+        }
+
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .list li {
+            background: white;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .btn-small {
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            background: var(--acc2);
+            color: #003265;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="brand">
+                    <span>Painel Administrativo</span>
+                </div>
+
+                <div class="menu">
+                    <a href="/" class="btn">Voltar ao site</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <h2>Admin</h2>
+                <p class="muted" id="admin-status">Verificando sessão...</p>
+
+                <div class="tabs">
+                    <button class="tab active" data-tab="eventos">Eventos</button>
+                    <button class="tab" data-tab="voluntariado">Voluntariado</button>
+                    <button class="tab" data-tab="inscricoes">Inscrições</button>
+                    <button class="tab" id="btn-sair">Sair</button>
+                </div>
+
+                <!-- EVENTOS -->
+                <div class="panel active" id="panel-eventos">
+                    <h3>Eventos</h3>
+
+                    <form id="events-form">
+                        <input type="hidden" id="event-id">
+
+                        <label for="event-titulo">Título</label>
+                        <input id="event-titulo" required placeholder="Retiro espiritual">
+
+                        <label for="event-data-inicio">Data início (DD-MM-AAAA)</label>
+                        <input id="event-data-inicio" required placeholder="12-07-2026">
+
+                        <label for="event-data-fim">Data fim (DD-MM-AAAA)</label>
+                        <input id="event-data-fim" placeholder="14-07-2026">
+
+                        <label for="event-horario">Horário (opcional)</label>
+                        <input id="event-horario" placeholder="15:00">
+
+                        <label for="event-local">Local</label>
+                        <input id="event-local" required placeholder="Recanto da Paz">
+
+                        <label for="event-descricao">Descrição (opcional)</label>
+                        <textarea id="event-descricao" placeholder="Detalhes do evento..."></textarea>
+
+                        <p class="mt-12">
+                            <button class="btn" type="submit" id="event-submit">Salvar evento</button>
+                            <button class="btn" type="button" id="event-cancel"
+                                style="display:none; margin-left:8px;">Cancelar edição</button>
+                        </p>
+                    </form>
+
+                    <h3 style="margin-top:22px;">Eventos cadastrados</h3>
+                    <ul class="list" id="events-list"></ul>
+                </div>
+
+                <!-- VOLUNTARIADO -->
+                <div class="panel" id="panel-voluntariado">
+                    <h3>Voluntariado</h3>
+
+                    <form id="vol-form">
+                        <input type="hidden" id="vol-id">
+
+                        <label for="vol-titulo">Nome da vaga</label>
+                        <input id="vol-titulo" required placeholder="Mídia, Recepção, Escola Sabatina...">
+
+                        <label for="vol-igreja">Igreja</label>
+                        <input id="vol-igreja" required placeholder="Igreja do Wanel">
+
+                        <label for="vol-email-destino">E-mail destino</label>
+                        <input id="vol-email-destino" type="email" required placeholder="igreja@exemplo.com">
+
+                        <label for="vol-descricao">Descrição (opcional)</label>
+                        <textarea id="vol-descricao" placeholder="O que o voluntário fará, horários, etc."></textarea>
+
+                        <p class="mt-12">
+                            <button class="btn" type="submit" id="vol-submit">Salvar vaga</button>
+                            <button class="btn" type="button" id="vol-cancel"
+                                style="display:none; margin-left:8px;">Cancelar edição</button>
+                        </p>
+                    </form>
+
+                    <h3 style="margin-top:22px;">Vagas cadastradas</h3>
+                    <ul class="list" id="vol-list"></ul>
+                </div>
+
+                <!-- Inscrições -->
+                <div class="panel" id="panel-inscricoes">
+                    <h3>Inscrições</h3>
+                    <p class="muted">Listagem das inscrições recebidas.</p>
+                    <ul class="list" id="apps-list"></ul>
+                </div>
+
+        </section>
+    </main>
+
+    <script src="/admin.js"></script>
+</body>
+
+</html>

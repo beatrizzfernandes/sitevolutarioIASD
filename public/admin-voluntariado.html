@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Painel - Voluntariado</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Painel de Voluntariado</h1>
+        <p class="muted">Cadastrar, editar e excluir vagas de voluntariado.</p>
+
+        <form id="vol-role-form">
+            <input type="hidden" id="vol-role-id">
+
+            <label for="titulo">Nome da vaga</label>
+            <input id="titulo" name="titulo" required placeholder="Mídia, Recepção, Escola Sabatina...">
+
+            <label for="igreja">Igreja</label>
+            <input id="igreja" name="igreja" required placeholder="Igreja do Wanel">
+
+            <label for="email_destino">E-mail da igreja / responsável</label>
+            <input id="email_destino" name="email_destino" type="email" required placeholder="igreja@exemplo.com">
+
+            <label for="descricao">Descrição da vaga</label>
+            <textarea id="descricao" name="descricao"
+                placeholder="O que o voluntário fará, requisitos, horários..."></textarea>
+
+            <p class="mt-12">
+                <button class="btn" type="submit" id="vol-submit-btn">Salvar vaga</button>
+                <button type="button" class="btn" id="vol-cancel-edit" style="display:none; margin-left:8px;">
+                    Cancelar edição
+                </button>
+            </p>
+        </form>
+
+        <hr>
+
+        <h2>Vagas cadastradas</h2>
+        <ul id="vol-role-list"></ul>
+    </div>
+
+    <script src="/admin-voluntariado.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Painel - Eventos</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Painel de Eventos</h1>
+        <p class="muted">Cadastrar, editar e excluir eventos distritais.</p>
+
+        <!-- FORMULï¿½RIO -->
+        <form id="event-form">
+            <!-- usado sï¿½ em modo ediï¿½ï¿½o -->
+            <input type="hidden" id="event-id">
+
+            <label for="titulo">Tï¿½tulo</label>
+            <input id="titulo" name="titulo" required placeholder="Retiro espiritual">
+
+            <label for="data_inicio">Data inï¿½cio</label>
+            <input id="data_inicio" name="data_inicio" type="date" required>
+
+            <label for="data_fim">Data fim</label>
+            <input id="data_fim" name="data_fim" type="date">
+
+            <label for="horario">Horï¿½rio</label>
+            <input id="horario" name="horario" placeholder="15:00">
+
+            <label for="local">Local</label>
+            <input id="local" name="local" required placeholder="Recanto da Paz">
+
+            <label for="descricao">Descriï¿½ï¿½o</label>
+            <textarea id="descricao" name="descricao" placeholder="Detalhes do evento"></textarea>
+
+            <p class="mt-12">
+                <button class="btn" type="submit" id="submit-btn">Salvar evento</button>
+                <button type="button" class="btn" id="cancel-edit" style="display:none; margin-left:8px;">
+                    Cancelar ediï¿½ï¿½o
+                </button>
+            </p>
+        </form>
+
+        <hr>
+
+        <!-- LISTA DE EVENTOS -->
+        <h2>Eventos cadastrados</h2>
+        <ul id="event-list"></ul>
+    </div>
+
+    <script src="/eventos.js"></script>
+</body>
+
+</html>
