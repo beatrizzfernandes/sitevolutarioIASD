@@ -13,7 +13,7 @@ const applicationsRouter = require('./applications.routes');
 const contactRouter = require('./contact.routes');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const rateLimit = require('express-rate-limit');
 

@@ -2,12 +2,20 @@
 const sqlite3 = require('sqlite3').verbose();
 const { open } = require('sqlite');
 const path = require('path');
+const fs = require('fs');
 
 let dbPromise = null;
 
 async function createConnection() {
+  // 1) Permite configurar o caminho do banco em produção (Render/Railway)
+  // Ex.: DB_PATH=/var/data/bdd.sqlite
+  const dbPath = process.env.DB_PATH || path.join(__dirname, 'bdd.sqlite');
+
+  // 2) Garante que a pasta do arquivo existe (importante quando DB_PATH aponta pra outro lugar)
+  fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+
   const db = await open({
-    filename: path.join(__dirname, 'bdd.sqlite'),
+    filename: dbPath,
     driver: sqlite3.Database,
   });
 
@@ -19,9 +27,9 @@ async function createConnection() {
     CREATE TABLE IF NOT EXISTS events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       titulo TEXT NOT NULL,
-      data_inicio TEXT NOT NULL,   -- '2026-07-12'
-      data_fim TEXT,               -- '2026-07-15'
-      horario TEXT,                -- '15:00'
+      data_inicio TEXT NOT NULL,
+      data_fim TEXT,
+      horario TEXT,
       local TEXT NOT NULL,
       descricao TEXT,
       created_at TEXT DEFAULT CURRENT_TIMESTAMP
@@ -69,20 +77,8 @@ function getDb() {
 }
 
 module.exports = {
-  all: async (sql, params = []) => {
-    const db = await getDb();
-    return db.all(sql, params);
-  },
-  get: async (sql, params = []) => {
-    const db = await getDb();
-    return db.get(sql, params);
-  },
-  run: async (sql, params = []) => {
-    const db = await getDb();
-    return db.run(sql, params);
-  },
-  exec: async (sql) => {
-    const db = await getDb();
-    return db.exec(sql);
-  },
+  all: async (sql, params = []) => (await getDb()).all(sql, params),
+  get: async (sql, params = []) => (await getDb()).get(sql, params),
+  run: async (sql, params = []) => (await getDb()).run(sql, params),
+  exec: async (sql) => (await getDb()).exec(sql),
 };
