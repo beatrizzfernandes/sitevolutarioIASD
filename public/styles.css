@@ -260,3 +260,59 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: 768px) {
+
+    /* container não “aperta” demais */
+    .container {
+        width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    /* NAV vira vertical, centralizado */
+    header .container nav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .brand {
+        text-align: center;
+    }
+
+    .brand span {
+        font-size: 18px;
+        max-width: 26ch;
+        /* evita ficar “compridão” */
+    }
+
+    .menu {
+        width: 100%;
+        justify-content: center;
+        gap: 10px 14px;
+    }
+
+    .menu a {
+        font-size: 16px;
+    }
+
+    /* HERO ocupa 100% da largura e fica mais “bonito” no celular */
+    .hero {
+        min-height: 62vh;
+    }
+
+    .hero .container {
+        padding: 36px 0;
+    }
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero h3 {
+        font-size: 16px;
+        max-width: 38ch;
+    }
+}
