@@ -235,3 +235,21 @@ footer {
     background: #0b3a6f;
     color: #fff;
 }
+
+/* Card de estado vazio (mais harmônico) */
+.card-empty {
+    background: #fff9e6; /* amarelo bem claro */
+    border-left: 6px solid #ffd21f;
+    border-radius: 14px;
+    padding: 16px;
+}
+
+/* Texto */
+.card-empty h3,
+.card-empty p {
+    color: #003265;
+}
+
+.card-empty p {
+    opacity: 0.8;
+}

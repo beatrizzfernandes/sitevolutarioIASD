@@ -9,10 +9,24 @@ async function carregarEventos() {
 
         container.innerHTML = '';
 
-        if (!eventos.length) {
-            container.innerHTML = '<p class="muted">Nenhum evento cadastrado.</p>';
+                if (!eventos.length) {
+            const emptyCard = document.createElement('article');
+            emptyCard.className = 'card card-empty';
+
+            const h3 = document.createElement('h3');
+            h3.textContent = 'Sem eventos por enquanto ):';
+
+            const p = document.createElement('p');
+            p.className = 'muted';
+            p.textContent = 'Assim que a gente tiver novidades, elas vão aparecer aqui.';
+
+            emptyCard.appendChild(h3);
+            emptyCard.appendChild(p);
+
+            container.appendChild(emptyCard);
             return;
         }
+
 
         for (const ev of eventos) {
             const card = document.createElement('article');
@@ -101,8 +115,21 @@ async function carregarVagasVoluntariado() {
 
         volContainer.innerHTML = '';
 
-        if (!vagas.length) {
-            volContainer.innerHTML = '<p class="muted">Nenhuma vaga de voluntariado disponível no momento.</p>';
+                if (!vagas.length) {
+            const emptyCard = document.createElement('article');
+            emptyCard.className = 'card card-empty';
+
+            const h3 = document.createElement('h3');
+            h3.textContent = 'Sem vagas de voluntariado por enquanto ):';
+
+            const p = document.createElement('p');
+            p.className = 'muted';
+            p.textContent = 'Quando abrirem novas oportunidades, elas vão aparecer aqui.';
+
+            emptyCard.appendChild(h3);
+            emptyCard.appendChild(p);
+
+            volContainer.appendChild(emptyCard);
             return;
         }
 
