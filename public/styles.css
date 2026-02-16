@@ -238,7 +238,8 @@ footer {
 
 /* Card de estado vazio (mais harmônico) */
 .card-empty {
-    background: #fff9e6; /* amarelo bem claro */
+    background: #fff9e6;
+    /* amarelo bem claro */
     border-left: 6px solid #ffd21f;
     border-radius: 14px;
     padding: 16px;
@@ -252,4 +253,10 @@ footer {
 
 .card-empty p {
     opacity: 0.8;
+}
+
+.botao-igreja {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
