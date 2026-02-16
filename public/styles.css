@@ -261,88 +261,57 @@ footer {
     justify-content: center;
 }
 
+/* ====== MOBILE HEADER FIX ====== */
 @media (max-width: 768px) {
 
-    /* evita scroll lateral */
-    html,
-    body {
-        overflow-x: hidden;
+    header .container {
+        padding: 0 14px;
     }
 
-    /* HEADER: empilha e centraliza */
-    header {
+    header nav {
         display: flex;
         flex-direction: column;
+        /* empilha brand + menu */
         align-items: center;
         gap: 10px;
-        padding: 12px 14px;
     }
 
-    /* TÍTULO/LOGO: menor e com quebra bonita */
-    header h1,
-    .logo,
-    .site-title {
+    header nav .brand {
+        width: 100%;
+        text-align: center;
+    }
+
+    header nav .brand span {
+        display: block;
         font-size: 20px;
         line-height: 1.15;
-        text-align: center;
-        margin: 0;
-        max-width: 95%;
+        word-break: normal;
+        overflow-wrap: anywhere;
     }
 
-    /* NAV: permite quebrar e centraliza */
-    nav {
+    header nav .menu {
         width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    nav ul {
+        max-width: 420px;
+        /* centraliza e limita largura */
+        margin: 0 auto;
+        /* centraliza o bloco */
         display: flex;
         flex-wrap: wrap;
-        /* quebra em várias linhas */
         justify-content: center;
-        gap: 10px 16px;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        max-width: 95%;
+        align-items: center;
+        gap: 10px 14px;
     }
 
-    nav a {
+    header nav .menu a {
         font-size: 16px;
         padding: 6px 8px;
-        display: inline-block;
     }
 
-    /* ÍCONE PERFIL: não deixa estourar pra fora */
-    .profile-icon,
-    .user-icon,
-    .icon-user {
-        position: static !important;
-        margin-top: 6px;
-    }
-
-    /* BANNER/IMAGEM: sempre 100% */
-    .hero img,
-    .banner img,
-    .home-banner img {
-        width: 100%;
-        height: auto;
+    /* Ícone do perfil */
+    header nav .menu img.botao-igreja {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
         display: block;
-    }
-
-    /* TEXTO DO BANNER: ajusta tamanho */
-    .hero h2,
-    .banner h2,
-    .hero h1,
-    .banner h1 {
-        font-size: 30px;
-        line-height: 1.1;
-    }
-
-    .hero p,
-    .banner p {
-        font-size: 16px;
-        line-height: 1.4;
     }
 }
