@@ -6,24 +6,73 @@ const fs = require('fs');
 
 let dbPromise = null;
 
-async function createConnection() {
-  // 1) Permite configurar o caminho do banco em produção (Render/Railway)
-  // Ex.: DB_PATH=/var/data/bdd.sqlite
-  const dbPath = process.env.DB_PATH || path.join(__dirname, 'bdd.sqlite');
+function resolveDbPath() {
+  // Se você definir DB_PATH no Render, ele manda.
+  if (process.env.DB_PATH) return process.env.DB_PATH;
 
-  // 2) Garante que a pasta do arquivo existe (importante quando DB_PATH aponta pra outro lugar)
-  fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+  // No Render com disco persistente, use /data
+  if (process.env.RENDER) return '/data/bdd.sqlite';
+
+  // Local/dev: junto do backend
+  return path.join(__dirname, 'bdd.sqlite');
+}
+
+async function initDb(db) {
+  // Ativa integridade referencial
+  await db.exec('PRAGMA foreign_keys = ON;');
+
+  // TABELA DE EVENTOS
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS events (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      titulo TEXT NOT NULL,
+      data TEXT,
+      local TEXT,
+      descricao TEXT,
+      criado_em TEXT DEFAULT (datetime('now'))
+    );
+  `);
+
+  // TABELA DE VOLUNTÁRIOS (ajuste os campos conforme seu projeto real)
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS volunteers (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      titulo TEXT NOT NULL,
+      igreja TEXT NOT NULL,
+      email_destino TEXT NOT NULL,
+      descricao TEXT,
+      criado_em TEXT DEFAULT (datetime('now'))
+    );
+  `);
+}
+
+async function createConnection() {
+  const dbPath = resolveDbPath();
+  const dir = path.dirname(dbPath);
+
+  // Render: NÃO tente criar /var/data. Use /data (disco) ou /tmp.
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
 
   const db = await open({
     filename: dbPath,
     driver: sqlite3.Database,
   });
 
-  // Ativa integridade referencial (obrigatório no SQLite)
-  await db.exec('PRAGMA foreign_keys = ON;');
+  await initDb(db);
+  return db;
+}
 
-  // ---------- TABELA DE EVENTOS ----------
-  await db.exec(`
+async function getDb() {
+  if (!dbPromise) dbPromise = createConnection();
+  return dbPromise;
+}
+
+module.exports = { getDb };
+
+// ---------- TABELA DE EVENTOS ----------
+await db.exec(`
     CREATE TABLE IF NOT EXISTS events (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       titulo TEXT NOT NULL,
@@ -36,8 +85,8 @@ async function createConnection() {
     );
   `);
 
-  // ---------- TABELA DE VAGAS DE VOLUNTARIADO (PAI) ----------
-  await db.exec(`
+// ---------- TABELA DE VAGAS DE VOLUNTARIADO (PAI) ----------
+await db.exec(`
     CREATE TABLE IF NOT EXISTS volunteer_roles (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       titulo TEXT NOT NULL,
@@ -48,8 +97,8 @@ async function createConnection() {
     );
   `);
 
-  // ---------- TABELA DE INSCRIÇÕES (FILHA) ----------
-  await db.exec(`
+// ---------- TABELA DE INSCRIÇÕES (FILHA) ----------
+await db.exec(`
     CREATE TABLE IF NOT EXISTS volunteer_applications (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       volunteer_role_id INTEGER NOT NULL,
@@ -62,14 +111,13 @@ async function createConnection() {
     );
   `);
 
-  // Índice (melhora listagens / joins por vaga)
-  await db.exec(`
+// Índice (melhora listagens / joins por vaga)
+await db.exec(`
     CREATE INDEX IF NOT EXISTS idx_vol_apps_role_id
     ON volunteer_applications(volunteer_role_id);
   `);
 
-  return db;
-}
+return db;
 
 function getDb() {
   if (!dbPromise) dbPromise = createConnection();
